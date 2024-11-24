@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-2048-deployment
+  labels:
+    app: nginx-2048
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx-2048
+      version: blue # Version is blue
+  template:
+    metadata:
+      labels:
+        app: nginx-2048
+        version: blue # Version is blue
+    spec:
+      containers:
+        - name: nginx-2048
+          image: vishnukrishna1999S/nginx-2048:latest
+          ports:
+            - containerPort: 80
