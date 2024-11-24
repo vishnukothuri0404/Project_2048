@@ -21,3 +21,4 @@ spec:
           image: vishnukrishna1999S/nginx-2048:latest
           ports:
             - containerPort: 80
+
