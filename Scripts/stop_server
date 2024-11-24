@@ -2,3 +2,4 @@
 # Add commands to stop the application, if necessary
 kubectl scale deployment nginx-2048-deployment --replicas=0
 
+
