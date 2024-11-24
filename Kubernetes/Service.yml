@@ -5,6 +5,7 @@ metadata:
 spec:
   selector:
     app: nginx-2048
+    version: blue # Initially routes to blue
   ports:
     - protocol: TCP
       port: 80
