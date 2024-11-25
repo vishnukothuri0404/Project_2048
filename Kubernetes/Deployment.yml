@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-2048-deployment-${VERSION}  # Dynamic deployment name
+  name: nginx-2048-deployment-${VERSION} 
   labels:
     app: nginx-2048
 spec:
@@ -9,7 +9,7 @@ spec:
   selector:
     matchLabels:
       app: nginx-2048
-      version: ${VERSION}  # Dynamic version
+      version: ${VERSION}
   template:
     metadata:
       labels:

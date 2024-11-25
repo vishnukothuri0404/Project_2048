@@ -51,3 +51,4 @@ nodeGroups:
         kubectl version --client
     # Removed instancesDistribution and managed fields as they are not valid here
 
+git restore 
