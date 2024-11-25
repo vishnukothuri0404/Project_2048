@@ -17,5 +17,5 @@ VERSION=$(echo "$lowercase_output" | grep -oP 'version:\s*\K\S+')
 # Export the VERSION environment variable
 export VERSION
 
-# Optionally, print the version
-echo "Exported VERSION: $VERSION"
+# Save the VERSION variable to ~/.bashrc
+echo "export VERSION=\"$VERSION\"" >> ~/.bashrc
