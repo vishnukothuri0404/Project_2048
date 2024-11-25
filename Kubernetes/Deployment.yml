@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-2048-deployment-${DEPLOYMENT_NAME}  # Dynamic deployment name
+  name: nginx-2048-deployment-${VERSION}  # Dynamic deployment name
   labels:
     app: nginx-2048
 spec:
