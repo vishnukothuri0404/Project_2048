@@ -12,7 +12,9 @@ lowercase_output=$(echo "$output" | tr '[:upper:]' '[:lower:]')
 
 # Print the lowercase output
 echo "$lowercase_output"
-VERSION=$(echo "$lowercase_output" | grep -oP 'version:\s*\K\S+')
+
+# Directly assign the lowercase output to VERSION
+VERSION="$lowercase_output"
 
 # Export the VERSION environment variable
 export VERSION
@@ -20,4 +22,5 @@ export VERSION
 # Save the VERSION variable to ~/.bashrc
 echo "export VERSION=\"$VERSION\"" >> ~/.bashrc
 
-
+# Optionally, print the version
+echo "Exported VERSION: $VERSION"
