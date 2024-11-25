@@ -2,5 +2,5 @@
 # Add commands to stop the application, if necessary
 pwd
 which kubectl
-kubectl get pods
+/usr/local/bin/kubectl get pods
 
