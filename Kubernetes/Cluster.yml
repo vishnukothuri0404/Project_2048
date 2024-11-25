@@ -2,9 +2,23 @@ apiVersion: eksctl.io/v1alpha5
 kind: ClusterConfig
 
 metadata:
-  name: gamecluster-cluster      # Name of your cluster
-  region: us-east-1              # AWS region (N. Virginia, change to us-east-1)
+  name: 2048-game-cluster         # Updated name of your cluster
+  region: us-east-1              # AWS region (Ohio)
   version: "1.31"                # Kubernetes version
+
+nodeGroups:
+  - name: 2048-game-ng           # Updated name of the node group
+    instanceType: t2.medium      # EC2 instance type for nodes
+    desiredCapacity: 1           # Desired number of nodes
+    minSize: 1                   # Minimum number of nodes
+    maxSize: 5                   # Maximum number of nodes
+    volumeSize: 20               # EBS volume size (in GB)
+    volumeType: gp2              # EBS volume type
+    ssh:
+      allow: true                # Enables SSH access
+      publicKeyName: Vishnu_2048  # Specify your SSH key here
+    privateNetworking: false
+
 iam:
   withOIDC: true                 # Enables OIDC integration for IAM roles
   serviceRoleARN:                # (Optional) IAM role for the EKS cluster
@@ -23,32 +37,3 @@ kubernetesNetworkConfig:
 addons:
   - name: vpc-cni
     version: latest
-
-
-nodeGroups:
-  - name: gamecluster-ng         # Name of the node group
-    instanceType: t2.medium      # EC2 instance type for nodes
-    desiredCapacity: 1           # Desired number of nodes
-    minSize: 1                   # Minimum number of nodes
-    maxSize: 5                   # Maximum number of nodes
-    volumeSize: 10               # EBS volume size (in GB)
-    volumeType: gp2              # EBS volume type
-    ssh:
-      allow: true                # Enables SSH access
-      publicKeyName: vishnu_mac  # Specify your SSH key here
-    privateNetworking: false
-    overrideBootstrapCommand: |
-      #!/bin/bash
-        yum install ruby wget -y
-        wget https://aws-codedeploy-us-east-2.s3.us-east-2.amazonaws.com/latest/install
-        chmod +x ./install
-        sudo ./install auto
-        systemctl status codedeploy-agent
-        systemctl start codedeploy-agent
-        systemctl enable codedeploy-agent
-        curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
-        sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
-        kubectl version --client
-    # Removed instancesDistribution and managed fields as they are not valid here
-
-git restore 
