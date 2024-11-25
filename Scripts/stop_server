@@ -19,7 +19,10 @@ VERSION="$lowercase_output"
 # Export the VERSION environment variable
 export VERSION
 
-# Save the VERSION variable to ~/.bashrc
+# Remove any existing export VERSION lines from ~/.bashrc
+sed -i '/export VERSION=/d' ~/.bashrc
+
+# Save the updated VERSION variable to ~/.bashrc
 echo "export VERSION=\"$VERSION\"" >> ~/.bashrc
 
 # Optionally, print the version
