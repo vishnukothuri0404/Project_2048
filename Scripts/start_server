@@ -1,4 +1,7 @@
 #!/bin/bash
 cd /vishnu/code_deploy
+pwd
+ls
+
 kubectl apply -f Kubernetes/Deployment.yml
 

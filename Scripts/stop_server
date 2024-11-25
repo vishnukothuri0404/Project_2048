@@ -1,4 +1,33 @@
 #!/bin/bash
-# Add commands to stop the application, if necessary
-kubectl scale deployment nginx-2048-deployment --replicas=0
+
+/usr/local/bin/kubectl get deployments --output=jsonpath='{.items[0].metadata.name}' > /vishnu/code_deploy/.tmp
+
+# Execute the AWS CLI command and capture the output
+output=$(aws deploy list-deployments \
+    --application-name "2048-game-code-deployment" \
+    --deployment-group-name "2048-game-code-deployment-group" \
+    --query 'deployments[0]' \
+    --output text)
+
+# Convert the output to lowercase
+lowercase_output=$(echo "$output" | tr '[:upper:]' '[:lower:]')
+
+# Print the lowercase output
+echo "$lowercase_output"
+
+# Directly assign the lowercase output to VERSION
+VERSION="$lowercase_output"
+
+# Export the VERSION environment variable
+export VERSION
+
+# Remove any existing export VERSION lines from ~/.bashrc
+sed -i '/export VERSION=/d' ~/.bashrc
+
+# Save the updated VERSION variable to ~/.bashrc
+echo "export VERSION=\"$VERSION\"" >> ~/.bashrc
+
+# Optionally, print the version
+echo "Exported VERSION: $VERSION"
+
 

@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-2048-deployment-${VERSION}  # Dynamic deployment name
+  name: nginx-2048-deployment
   labels:
     app: nginx-2048
 spec:
@@ -9,15 +9,15 @@ spec:
   selector:
     matchLabels:
       app: nginx-2048
-      version: ${VERSION}  # Dynamic version
+      version: blue # Version is blue
   template:
     metadata:
       labels:
         app: nginx-2048
-        version: ${VERSION}
+        version: blue # Version is blue
     spec:
       containers:
         - name: nginx-2048
-          image: 872515248362.dkr.ecr.us-east-1.amazonaws.com/2048-game-k8s
+          image: vishnukrishna1999S/nginx-2048:latest
           ports:
             - containerPort: 80
