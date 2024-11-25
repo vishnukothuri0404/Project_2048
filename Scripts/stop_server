@@ -1,5 +1,4 @@
 #!/bin/bash
-
 kubectl get deployments --output=jsonpath='{.items[0].metadata.name}' > /vishnu/code_deploy/.tmp
 
 # Execute the AWS CLI command and capture the output
