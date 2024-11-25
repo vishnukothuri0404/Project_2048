@@ -19,3 +19,5 @@ export VERSION
 
 # Save the VERSION variable to ~/.bashrc
 echo "export VERSION=\"$VERSION\"" >> ~/.bashrc
+
+
