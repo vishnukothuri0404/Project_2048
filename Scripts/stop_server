@@ -4,3 +4,15 @@ pwd
 which kubectl
 /usr/local/bin/kubectl get pods
 
+# Execute the AWS CLI command and capture the output
+output=$(aws deploy list-deployments \
+    --application-name "2048-game-code-deployment" \
+    --deployment-group-name "2048-game-code-deployment-group" \
+    --query 'deployments[0]' \
+    --output text)
+
+# Convert the output to lowercase
+lowercase_output=$(echo "$output" | tr '[:upper:]' '[:lower:]')
+
+# Print the lowercase output
+echo "$lowercase_output"
