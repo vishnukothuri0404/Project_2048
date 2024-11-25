@@ -5,12 +5,19 @@ files:
     destination: /vishnu/code_deploy
 hooks:
   BeforeInstall:
-    - location: Scripts/stop_server
-      timeout: 300
+    - location: scripts/fetch_k8s_deployment.sh
       runas: root
+  
   AfterInstall:
-    - location: Scripts/start_server
-      timeout: 300
+    - location: scripts/prepare_deployment.sh
+      runas: root
+
+  ApplicationStart:
+    - location: scripts/deploy_k8s.sh
+      runas: root
+
+  ValidateService:
+    - location: scripts/validate_deployment.sh
       runas: root
 
 
