@@ -34,5 +34,5 @@ source ~/.bashrc
 
 #Executing the Deployment(green)
 envsubst < /vishnu/code_deploy/Kubernetes/Deployment.yml | /usr/local/bin/kubectl apply -f -
-kubectl delete deployment "$(cat /vishnu/code_deploy/.tmp)"
+/usr/local/bin/kubectl delete deployment "$(cat /vishnu/code_deploy/.tmp)"
 
