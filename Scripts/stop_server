@@ -1,5 +1,4 @@
 #!/bin/bash
-
 /usr/local/bin/kubectl get deployments --output=jsonpath='{.items[0].metadata.name}' > /vishnu/code_deploy/.tmp
 
 
