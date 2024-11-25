@@ -1,5 +1,6 @@
 #!/bin/bash
 # Add commands to stop the application, if necessary
 pwd
+which kubectl
 kubectl get pods
 
